@@ -1,11 +1,11 @@
 import React from "react";
 import EventListItem from "./EventItem";
 
-const EventList = ({ events }) => {
+const EventList = ({ events, selectEvent }) => {
   return (
     <>
       {events.map((event) => (
-        <EventListItem event={event} key={event.id} />
+        <EventListItem event={event} key={event.id} selectEvent={selectEvent} />
       ))}
     </>
   );
