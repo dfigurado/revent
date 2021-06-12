@@ -18,13 +18,13 @@ const EventDashboard = () => {
   */
 
   const handleDelete = (eventId) => {
-    setEvents(events.filter(evt => evt.id !== eventId));
-  }
+    setEvents(events.filter((evt) => evt.id !== eventId));
+  };
 
   return (
     <Grid>
       <Grid.Column width={10}>
-        <EventList events={events} deleteEvent={handleDelete}/>
+        <EventList events={events} deleteEvent={handleDelete} />
       </Grid.Column>
       <Grid.Column width={6}>
         <h2>Event Filters</h2>
