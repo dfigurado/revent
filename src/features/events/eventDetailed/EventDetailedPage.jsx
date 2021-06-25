@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import EventDetailedInfo from "./eventDetailedInfo";
-import EventDetailedHeader from "./eventDetailedHeader";
-import EventDetailedChat from "./eventDetailedChat";
-import EventDetailedSidebar from "./eventDetailedSideBar";
+import EventDetailedInfo from "./EventDetailedInfo";
+import EventDetailedHeader from "./EventDetailedHeader";
+import EventDetailedChat from "./EventDetailedChat";
+import EventDetailedSideBar from "./EventDetailedSidebar";
 import { useSelector } from "react-redux";
 
 const EventDetailedPage = ({ match }) => {
@@ -19,7 +19,7 @@ const EventDetailedPage = ({ match }) => {
         <EventDetailedChat />
       </Grid.Column>
       <Grid.Column width={6}>
-        <EventDetailedSidebar attendees={event.attendees} />
+        <EventDetailedSideBar attendees={event.attendees} />
       </Grid.Column>
     </Grid>
   );

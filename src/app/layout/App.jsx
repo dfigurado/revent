@@ -4,7 +4,7 @@ import NavBar from "../../features/nav/NavBar";
 import React, { Fragment } from "react";
 import { Route } from "react-router";
 import HomePage from "./../../features/home/HomePage";
-import EventDetailedPage from "./../../features/events/eventDetailed/EventDetailedPage";
+import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
 import EventForm from "./../../features/events/eventForm/EventForm";
 import Sandbox from "./../../features/sandBox/Sandbox";
 import { useLocation } from "react-router-dom";

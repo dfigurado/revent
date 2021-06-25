@@ -1,6 +1,7 @@
+/* global google */
 import React from "react";
 import * as Yup from "yup";
-import { cuid } from "cuid";
+import cuid from "cuid";
 import { Link } from "react-router-dom";
 import { categoryData } from "../../../app/api/categoryData";
 import { Formik, Form } from "formik";
@@ -11,6 +12,7 @@ import TextInput from "./../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import TextSelectInput from "./../../../app/common/form/SelectorInput";
 import DateInput from "../../../app/common/form/DateInput";
+import PlaceInput from "../../../app/common/form/PlacesInput";
 
 const EventForm = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -22,8 +24,14 @@ const EventForm = ({ match, history }) => {
     title: "",
     category: "",
     description: "",
-    city: "",
-    venue: "",
+    city: {
+      address:"",
+      latlng: null
+    },
+    venue: {
+      address:"",
+      latlng: null
+    },
     date: "",
   };
 
@@ -31,8 +39,12 @@ const EventForm = ({ match, history }) => {
     title: Yup.string().required("Please enter a title"),
     category: Yup.string().required("Please enter a category name"),
     description: Yup.string().required("Please provide an event description"),
-    city: Yup.string().required("Please provide city were the event is held"),
-    venue: Yup.string().required("Please provide the venu name"),
+    city: Yup.object().shape({
+      address: Yup.string().required("Please provide city were the event is held"),
+    }),
+    venue: Yup.object().shape({
+      address: Yup.string().required("Please provide the venu name")
+    }),
     date: Yup.string().required("Please enter the event held date"),
   });
 
@@ -56,7 +68,7 @@ const EventForm = ({ match, history }) => {
           history.push("/events");
         }}
       >
-        {({ isSubmitting, dirty, isValid }) => (
+        {({ isSubmitting, dirty, isValid, values}) => (
           <Form className='ui form'>
             <Header sub color='teal' content='Event Details' />
             <TextInput name='title' placeholder='Event title' />
@@ -68,8 +80,17 @@ const EventForm = ({ match, history }) => {
             />
             <TextArea name='description' placeholder='Event description' />
             <Header sub color='teal' content='Event Location Details' />
-            <TextInput name='city' placeholder='Event city' />
-            <TextInput name='venue' placeholder='Event venue' />
+            <PlaceInput name='city' placeholder='Event city' />
+            <PlaceInput 
+              name='venue' 
+              disabled={!values.city.latlng} 
+              placeholder='Venue' 
+              options={{
+                location: new google.maps.LatLng(values.city.latlng),
+                radius: 1000,
+                types: ['establishment']
+              }}
+            />
             <DateInput
               name='date'
               placeholderText='Event date'
