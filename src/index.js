@@ -1,32 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'semantic-ui-css/semantic.min.css'
-import './app/layout/styles.css';
-import App from './app/layout/App';
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
-import { configureStore } from './app/store/configureStore';
-import ScrollToTop from './app/layout/scrollToTop';
+import React from "react";
+import ReactDOM from "react-dom";
+import "semantic-ui-css/semantic.min.css";
+import "react-toastify/dist/ReactToastify.min.css";
+import "react-calendar/dist/Calendar.css";
+import "./app/layout/styles.css";
+import App from "./app/layout/App";
+import ScrollToTop from "./app/layout/scrollToTop";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import { loadEvents } from "./features/events/eventActions";
+import { BrowserRouter } from "react-router-dom";
+import { configureStore } from "./app/store/configureStore";
 
 const store = configureStore();
-const rootElm = document.getElementById('root')
+store.dispatch(loadEvents());
+const rootElm = document.getElementById("root");
 
 function render() {
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <ScrollToTop />
-        <App/>
+        <App />
       </BrowserRouter>
     </Provider>,
-   rootElm);
+    rootElm
+  );
 }
 
-if (module.hot){
-  module.hot.accept('./app/layout/App.jsx', function(){
+if (module.hot) {
+  module.hot.accept("./app/layout/App.jsx", function () {
     setTimeout(render);
-  })
+  });
 }
 
 render();

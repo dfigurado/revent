@@ -1,14 +1,16 @@
-import { Container } from "semantic-ui-react";
-import EventDashboard from "../../features/events/eventDashboard/EventDashboard";
-import NavBar from "../../features/nav/NavBar";
 import React, { Fragment } from "react";
-import { Route } from "react-router";
-import HomePage from "./../../features/home/HomePage";
-import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
-import EventForm from "./../../features/events/eventForm/EventForm";
+import NavBar from "../../features/nav/NavBar";
 import Sandbox from "./../../features/sandBox/Sandbox";
-import { useLocation } from "react-router-dom";
+import HomePage from "./../../features/home/HomePage";
+import EventForm from "./../../features/events/eventForm/EventForm";
 import ModalManager from "../common/modals/ModalManager";
+import EventDashboard from "../../features/events/eventDashboard/EventDashboard";
+import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
+
+import { Route } from "react-router";
+import { Container } from "semantic-ui-react";
+import { useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { key } = useLocation();
@@ -16,6 +18,7 @@ function App() {
   return (
     <>
       <ModalManager />
+      <ToastContainer position='bottom-right' />
       <Route exact path='/' component={HomePage} />
       <Route
         path={"/(.+)"}
