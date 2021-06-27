@@ -16,7 +16,7 @@ const EventListItem = ({ event }) => {
           <Item>
             <Item.Image size='tiny' circular src={event.hostPhotoURL} />
             <Item.Content>
-              <Item.Header content={event.Title} />
+              <Item.Header content={event.title} />
               <Item.Description>Hosted by {event.hostedBy}</Item.Description>
             </Item.Content>
           </Item>

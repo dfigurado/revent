@@ -8,12 +8,10 @@ import App from "./app/layout/App";
 import ScrollToTop from "./app/layout/scrollToTop";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
-import { loadEvents } from "./features/events/eventActions";
 import { BrowserRouter } from "react-router-dom";
 import { configureStore } from "./app/store/configureStore";
 
 const store = configureStore();
-store.dispatch(loadEvents());
 const rootElm = document.getElementById("root");
 
 function render() {
