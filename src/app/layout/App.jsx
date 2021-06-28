@@ -11,6 +11,7 @@ import { Route } from "react-router";
 import { Container } from "semantic-ui-react";
 import { useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import ErrorComponent from "../common/errors/ErrorComponent";
 
 function App() {
   const { key } = useLocation();
@@ -34,6 +35,7 @@ function App() {
                 component={EventForm}
                 key={key}
               />
+              <Route path='/error' component={ErrorComponent} />
             </Container>
           </>
         )}
