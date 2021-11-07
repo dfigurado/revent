@@ -25,7 +25,7 @@ const PlaceInput = ({ label, options, ...props }) => {
 
   return (
     <PlacesAutocomplete
-      value={field.value['address']}
+      value={field.value["address"]}
       onChange={(value) => helpers.setValue({ address: value })}
       onSelect={(value) => handleSelect(value)}
       searchOptions={options}
@@ -41,7 +41,7 @@ const PlaceInput = ({ label, options, ...props }) => {
           />
           {meta.touched && meta.error ? (
             <Label basic color='red'>
-              {meta.error['address']}
+              {meta.error["address"]}
             </Label>
           ) : null}
           {suggestions?.length > 0 && (

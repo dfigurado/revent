@@ -23,11 +23,7 @@ const NavBar = ({ setFormOpen }) => {
             <Button positive inverted content='Create Event' />
           </Menu.Item>
         )}
-        {authenticated ? ( 
-          <SignedInMenu /> 
-        ) : ( 
-          <SignedOutMenu /> 
-        )}
+        {authenticated ? <SignedInMenu /> : <SignedOutMenu />}
       </Container>
     </Menu>
   );

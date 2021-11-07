@@ -6,22 +6,23 @@ import * as Yup from "yup";
 import { closeModal } from "../../app/common/modals/modalReducer";
 import TextInput from "./../../app/common/form/TextInput";
 import ModalWrapper from "./../../app/common/modals/ModalWrapper";
-import { signInWithEmail } from "./../../app/firestore/firebaseService";
+import { registerInFirebase } from "./../../app/firestore/firebaseService";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
 
   return (
-    <ModalWrapper size='mini' header='Sign in to Re-events'>
+    <ModalWrapper size='mini' header='Register Re-events'>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ displayName: "", email: "", password: "" }}
         validationSchema={Yup.object({
+          displayName: Yup.string().required(),
           email: Yup.string().required().email(),
           password: Yup.string().required(),
         })}
         onSubmit={async (values, { setSubmitting, setErrors }) => {
           try {
-            await signInWithEmail(values);
+            await registerInFirebase(values);
             setSubmitting(false);
             dispatch(closeModal());
           } catch (error) {
@@ -32,6 +33,7 @@ const LoginForm = () => {
       >
         {({ isSubmitting, dirty, isValid, errors }) => (
           <Form className='ui form'>
+            <TextInput name='displayName' placeholder='Display Name' />
             <TextInput name='email' placeholder='Email Address' />
             <TextInput name='password' placeholder='Password' type='password' />
             {errors.auth && (
@@ -49,7 +51,7 @@ const LoginForm = () => {
               fluid
               size='large'
               color='teal'
-              content='Login'
+              content='Register'
             />
           </Form>
         )}
@@ -58,4 +60,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

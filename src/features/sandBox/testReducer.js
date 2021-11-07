@@ -1,26 +1,29 @@
-import { asyncActionFinish, asyncActionStart } from "../../app/async/asynchReducer";
+import {
+  asyncActionFinish,
+  asyncActionStart,
+} from "../../app/async/asynchReducer";
 import { delay } from "../../app/common/util/util";
-import { asyncActionError } from './../../app/async/asynchReducer';
+import { asyncActionError } from "./../../app/async/asynchReducer";
 import { toast } from "react-toastify";
 
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+export const INCREMENT_COUNTER = "INCREMENT_COUNTER";
+export const DECREMENT_COUNTER = "DECREMENT_COUNTER";
 
 export function increment(amount) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(asyncActionStart());
     try {
       await delay(1000);
-      dispatch({type: INCREMENT_COUNTER, payload:amount});
+      dispatch({ type: INCREMENT_COUNTER, payload: amount });
       dispatch(asyncActionFinish());
     } catch (error) {
-      dispatch(asyncActionError(error))
-    }  
-  }
+      dispatch(asyncActionError(error));
+    }
+  };
 }
 
 export function decrement(amount) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(asyncActionStart());
     try {
       await delay(1000);
@@ -28,9 +31,9 @@ export function decrement(amount) {
       dispatch(asyncActionFinish());
     } catch (error) {
       dispatch(asyncActionError(error));
-      toast.error(error)
+      toast.error(error);
     }
-  }
+  };
 }
 
 const initialState = {
@@ -39,16 +42,16 @@ const initialState = {
 
 export default function testReducer(state = initialState, action) {
   switch (action.type) {
-    case INCREMENT_COUNTER : 
+    case INCREMENT_COUNTER:
       return {
         ...state,
         data: state.data + action.payload,
       };
-    case DECREMENT_COUNTER : 
-        return {
-          ...state,
-          data: state.data - action.payload,
-        };
+    case DECREMENT_COUNTER:
+      return {
+        ...state,
+        data: state.data - action.payload,
+      };
     default:
       return state;
   }

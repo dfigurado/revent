@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { increment, decrement } from "./testReducer";
 import { openModal } from "./../../app/common/modals/modalReducer";
-import TestPlaceInput from "./TestPlaceInput";
 import TestMap from "./TestMap";
+import TestPlaceInput from "./TestPlaceInput";
+import { decrement, increment } from "./testReducer";
 
 const Sandbox = () => {
   const defaultProps = {
@@ -18,7 +18,7 @@ const Sandbox = () => {
 
   const data = useSelector((state) => state.test.data);
   const { loading } = useSelector((state) => state.async);
-  
+
   const [target, setTarget] = useState(null);
   const [location, setLocation] = useState(defaultProps);
 
@@ -31,7 +31,7 @@ const Sandbox = () => {
       <h1>Testing 123 </h1>
       <h3>The data is:{data}</h3>
       <Button
-        name="increment"
+        name='increment'
         loading={loading && target === "increment"}
         onClick={(e) => {
           dispatch(increment(10));
@@ -41,7 +41,7 @@ const Sandbox = () => {
         color='green'
       />
       <Button
-        name="decrement"
+        name='decrement'
         loading={loading && target === "decrement"}
         onClick={(e) => {
           dispatch(decrement(10));

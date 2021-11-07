@@ -16,7 +16,12 @@ const EventListItem = ({ event }) => {
               <Item.Header content={event.title} />
               <Item.Description>Hosted by {event.hostedBy}</Item.Description>
               {event.isCancelled && (
-                <Label style={{top:'-40px'}} ribbon='right' color='red' content='Cancelled' />
+                <Label
+                  style={{ top: "-40px" }}
+                  ribbon='right'
+                  color='red'
+                  content='Cancelled'
+                />
               )}
             </Item.Content>
           </Item>
