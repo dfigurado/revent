@@ -1,20 +1,25 @@
-import React, { Fragment } from "react";
-import NavBar from "../../features/nav/NavBar";
-import Sandbox from "./../../features/sandBox/Sandbox";
-import HomePage from "./../../features/home/HomePage";
-import EventForm from "./../../features/events/eventForm/EventForm";
-import ModalManager from "../common/modals/ModalManager";
-import EventDashboard from "../../features/events/eventDashboard/EventDashboard";
-import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
-
+import React from "react";
+import { useSelector } from "react-redux";
 import { Route } from "react-router";
-import { Container } from "semantic-ui-react";
 import { useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Container } from "semantic-ui-react";
+import EventDashboard from "../../features/events/eventDashboard/EventDashboard";
+import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
+import NavBar from "../../features/nav/NavBar";
 import ErrorComponent from "../common/errors/ErrorComponent";
+import ModalManager from "../common/modals/ModalManager";
+import AccountPage from "./../../features/auth/AccountPage";
+import EventForm from "./../../features/events/eventForm/EventForm";
+import HomePage from "./../../features/home/HomePage";
+import Sandbox from "./../../features/sandBox/Sandbox";
+import LoadingComponent from "./LoadingComponent";
 
 function App() {
   const { key } = useLocation();
+  const { initialized } = useSelector((state) => state.async);
+
+  if (!initialized) return <LoadingComponent content='Loading app...' />;
 
   return (
     <>
@@ -35,6 +40,7 @@ function App() {
                 component={EventForm}
                 key={key}
               />
+              <Route path='/account' component={AccountPage} />
               <Route path='/error' component={ErrorComponent} />
             </Container>
           </>
